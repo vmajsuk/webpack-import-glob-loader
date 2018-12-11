@@ -25,30 +25,30 @@ describe('loader', function() {
         // double quote
         var generatedCode = loader.call(context, 'import "./modules/*.js";');
         expect(generatedCode).to.equal(
-          '/** import "./modules/*.js" **/ import "./modules/a.js"; import "./modules/b.js"; import "./modules/c.js";'
+          'import "./modules/a.js"; import "./modules/b.js"; import "./modules/c.js";'
         );
 
         generatedCode = loader.call(context, 'import "./modules/*.js"; import "z.js";');
         expect(generatedCode).to.equal(
-          '/** import "./modules/*.js" **/ import "./modules/a.js"; import "./modules/b.js"; import "./modules/c.js"; import "z.js";'
+          'import "./modules/a.js"; import "./modules/b.js"; import "./modules/c.js"; import "z.js";'
         );
 
         // single quote
         var generatedCode = loader.call(context, 'import \'./modules/*.js\';');
         expect(generatedCode).to.equal(
-          '/** import \'./modules/*.js\' **/ import \'./modules/a.js\'; import \'./modules/b.js\'; import \'./modules/c.js\';'
+          'import \'./modules/a.js\'; import \'./modules/b.js\'; import \'./modules/c.js\';'
         );
       });
 
       it('should honor comment after expanding glob import files', function() {
         var generatedCode = loader.call(context, '//import "./modules/*.js";');
         expect(generatedCode).to.equal(
-          '///** import "./modules/*.js" **/ import "./modules/a.js"; import "./modules/b.js"; import "./modules/c.js";'
+          '//import "./modules/a.js"; import "./modules/b.js"; import "./modules/c.js";'
         );
 
         generatedCode = loader.call(context, '// import "./modules/*.js";');
         expect(generatedCode).to.equal(
-          '// /** import "./modules/*.js" **/ import "./modules/a.js"; import "./modules/b.js"; import "./modules/c.js";'
+          '// import "./modules/a.js"; import "./modules/b.js"; import "./modules/c.js";'
         );
       });
 
@@ -62,7 +62,7 @@ describe('loader', function() {
       it('should expand glob import files', function() {
         var generatedCode = loader.call(context, 'import modules from "./modules/*.js";');
         expect(generatedCode).to.equal(
-          '/** import modules from "./modules/*.js" **/ import * as modules0 from "./modules/a.js"; import * as modules1 from "./modules/b.js"; import * as modules2 from "./modules/c.js"; var modules = [modules0, modules1, modules2];'
+          'import * as modules0 from "./modules/a.js"; import * as modules1 from "./modules/b.js"; import * as modules2 from "./modules/c.js"; var modules = [modules0, modules1, modules2];'
         );
       });
     })
@@ -72,14 +72,14 @@ describe('loader', function() {
     it('should load node_modules files', function() {
       var generatedCode = loader.call(context, 'import "fake_module/js/*.js";');
       expect(generatedCode).to.equal(
-        '/** import "fake_module/js/*.js" **/ import "fake_module/js/a.js"; import "fake_module/js/b.js"; import "fake_module/js/c.js";'
+        'import "fake_module/js/a.js"; import "fake_module/js/b.js"; import "fake_module/js/c.js";'
       );
     });
 
     it('should honor comment after expanding glob import files', function() {
       var generatedCode = loader.call(context, '// import "fake_module/js/*.js";');
       expect(generatedCode).to.equal(
-        '// /** import "fake_module/js/*.js" **/ import "fake_module/js/a.js"; import "fake_module/js/b.js"; import "fake_module/js/c.js";'
+        '// import "fake_module/js/a.js"; import "fake_module/js/b.js"; import "fake_module/js/c.js";'
       );
     });
 

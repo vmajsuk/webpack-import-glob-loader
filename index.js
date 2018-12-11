@@ -87,7 +87,7 @@ module.exports = function(source) {
       self.emitWarning('Empty results for "' + match + '"');
     }
 
-    return '/** ' + match + ' **/' + ' ' + result;
+    return result;
   }
 
   var res = source.replace(regex, replacer);
