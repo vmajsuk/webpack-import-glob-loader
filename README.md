@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/terpiljenya/import-glob.svg)](https://travis-ci.org/terpiljenya/import-glob)
+[![Build Status](https://travis-ci.org/fred104/import-glob-loader.svg)](https://travis-ci.org/fred104/import-glob-loader.svg)
 [![npm version](https://badge.fury.io/js/import-glob-loader.svg)](https://badge.fury.io/js/import-glob-loader)
 # import-glob-loader
 ES6 import with glob patterns (preloader for Webpack)
