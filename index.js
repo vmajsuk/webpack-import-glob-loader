@@ -23,10 +23,11 @@ const replacer = ({ match, obj, filename, resourceDir }) => {
   const files = glob.sync(globRelativePath, { cwd: resourceDir });
 
   return `
-  ${files.map((file, i) => `import ${obj + i} from '${prefix + file}'\n`)}
+${files
+  .map((file, i) => `import ${obj + i} from '${prefix + file}'`)
+  .join("\n")}
 
-  const ${obj} = [${files.map(
-    (file, i) => `{ file: ${file}, data: ${obj}${i} }`
-  )}]
-  `;
+const ${obj} = [${files.map(
+    (file, i) => `{ file: '${file}', data: ${obj}${i} }`
+  )}]`;
 };
